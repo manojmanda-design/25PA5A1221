@@ -15,10 +15,8 @@ public class StudentJDBCApp {
 
             System.out.println("Database connected successfully.");
 
-            // Create Statement object
             Statement stmt = con.createStatement();
 
-            // a. Create Student table
             String createTable =
                     "CREATE TABLE IF NOT EXISTS Student (" +
                     "RollNo INT PRIMARY KEY, " +
@@ -29,7 +27,6 @@ public class StudentJDBCApp {
 
             System.out.println("Student table created successfully.");
 
-            // Insert few initial records
             stmt.executeUpdate(
                     "INSERT INTO Student VALUES (1, 'Ravi', 'Hyderabad')");
 
@@ -41,11 +38,9 @@ public class StudentJDBCApp {
 
             System.out.println("Initial records inserted.");
 
-            // b. Display records
             System.out.println("\nInitial Records:");
             displayRecords(stmt);
 
-            // c. Insert two new records
             stmt.executeUpdate(
                     "INSERT INTO Student VALUES (4, 'Meena', 'Pune')");
 
@@ -54,23 +49,19 @@ public class StudentJDBCApp {
 
             System.out.println("\nTwo new records inserted.");
 
-            // d. Update one record
             stmt.executeUpdate(
                     "UPDATE Student SET Address = 'Delhi' WHERE RollNo = 2");
 
             System.out.println("One record updated.");
 
-            // e. Delete one record
             stmt.executeUpdate(
                     "DELETE FROM Student WHERE RollNo = 3");
 
             System.out.println("One record deleted.");
 
-            // f. Display final records
             System.out.println("\nFinal Records:");
             displayRecords(stmt);
 
-            // Close resources
             stmt.close();
             con.close();
 
@@ -81,7 +72,6 @@ public class StudentJDBCApp {
         }
     }
 
-    // Function to display records
     public static void displayRecords(Statement stmt) throws SQLException {
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM Student");
